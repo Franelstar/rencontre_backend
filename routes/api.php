@@ -31,3 +31,9 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 });
+
+Route::get('informationPersonnelles', 'InformationPersonnellesController@index');
+Route::get('employee/{id}', 'InformationPersonnellesController@show');
+Route::post('informationPersonnelles', 'InformationPersonnellesController@store');
+Route::put('employee/{id}', 'InformationPersonnellesController@update');
+Route::delete('employee/{id}', 'InformationPersonnellesController@destroy');
