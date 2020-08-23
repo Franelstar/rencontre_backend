@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use App\InformationPersonnelles;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
@@ -31,7 +33,18 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-        $user->save();
+
+        $saved = $user->save();
+
+
+        if($saved){
+            $i_p = new InformationPersonnelles(['nom' => $request->name]);
+
+            $usert = User::find(DB::table('users')->where('email', $request->email)->value('id'));
+
+            $usert->informationPersonnelles()->save($i_p);
+        }
+
         return response()->json([
             'message' => 'Successfully created user!'
         ], 201);
@@ -66,6 +79,8 @@ class AuthController extends Controller
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
+            'user_id' => $user->id,
+            'user_email' => $user->email,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(

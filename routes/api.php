@@ -33,7 +33,7 @@ Route::group([
 });
 
 Route::get('informationPersonnelles', 'InformationPersonnellesController@index');
-Route::get('employee/{id}', 'InformationPersonnellesController@show');
+Route::get('informationPersonnelles/{id}', 'InformationPersonnellesController@show')->middleware('auth:api');
 Route::post('informationPersonnelles', 'InformationPersonnellesController@store');
-Route::put('employee/{id}', 'InformationPersonnellesController@update');
+Route::post('informationPersonnelles/{id}', 'InformationPersonnellesController@update');
 Route::delete('employee/{id}', 'InformationPersonnellesController@destroy');

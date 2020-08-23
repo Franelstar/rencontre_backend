@@ -14,11 +14,17 @@ class CreateInformationPersonnellesTable extends Migration
     public function up()
     {
         Schema::create('information_personnelles', function (Blueprint $table) {
-            $table->id();
+            $table->integer('user_id');
             $table->string('nom')->nullable();
             $table->string('prenom')->nullable();
             $table->enum('sexe', array('M','F'))->nullable();
             $table->date('date_naissance')->nullable();
+            $table->integer('o_sexuele')->nullable();
+            $table->text('apropro')->nullable();
+            $table->enum('sexe_cherche', array('M','F'))->nullable();
+            $table->integer('age_min')->nullable();
+            $table->integer('age_max')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
