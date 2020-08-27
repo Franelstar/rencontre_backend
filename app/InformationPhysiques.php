@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InformationPersonnelles extends Model
+class InformationPhysiques extends Model
 {
     protected $primaryKey = null;
 
     public $incrementing = false;
 
     protected $fillable = [
-        'nom',
-        'photo'
+
     ];
 
     public function user()

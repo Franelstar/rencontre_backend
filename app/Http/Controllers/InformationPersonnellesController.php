@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\InformationPersonnelles;
 use App\Http\Resources\InformationPersonnellesRessource;
 use Illuminate\Support\Facades\DB;
+#use Intervention\Image\ImageManagerStatic as Image;
 
 class InformationPersonnellesController extends Controller
 {
@@ -118,6 +119,13 @@ class InformationPersonnellesController extends Controller
         $destinationPath = public_path('/images');
         $image->move($destinationPath, $name);
 
+        /*$destinationPath = public_path('/thumbnail');
+        $img = Image::make($image->getRealPath());
+        $img->resize(150, 150, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$name);*/
+
+
         $affected = DB::table('information_personnelles')
               ->where('user_id', $id)
               ->update([
@@ -133,7 +141,8 @@ class InformationPersonnellesController extends Controller
                 'photo' => $name
               ]);
 
-        return response()->json(url('/').'/images/'.$name);
+        //return response()->json(url('/').'/images/'.$name);
+        return response()->json('Informations personnelles suavegardées avec succès');
     }
 
     /**

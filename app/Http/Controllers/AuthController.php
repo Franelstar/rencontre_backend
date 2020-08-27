@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\InformationPersonnelles;
+use App\InformationPhysiques;
 use Illuminate\Support\Facades\DB;
 
 
@@ -38,11 +39,13 @@ class AuthController extends Controller
 
 
         if($saved){
-            $i_p = new InformationPersonnelles(['nom' => $request->name]);
+            $i_p = new InformationPersonnelles(['nom' => $request->name, 'photo' => 'profile.jpg']);
+            $i_ph = new InformationPhysiques([]);
 
             $usert = User::find(DB::table('users')->where('email', $request->email)->value('id'));
 
             $usert->informationPersonnelles()->save($i_p);
+            $usert->informationPhysique()->save($i_ph);
         }
 
         return response()->json([

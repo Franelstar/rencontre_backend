@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\InformationPersonnelles');
     }
+
+    public function informationPhysique()
+    {
+        return $this->hasOne('App\InformationPhysiques');
+    }
 }

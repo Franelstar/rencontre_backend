@@ -35,5 +35,11 @@ Route::group([
 Route::get('informationPersonnelles', 'InformationPersonnellesController@index');
 Route::get('informationPersonnelles/{id}', 'InformationPersonnellesController@show')->middleware('auth:api');
 Route::post('informationPersonnelles', 'InformationPersonnellesController@store');
-Route::post('informationPersonnelles/{id}', 'InformationPersonnellesController@update');
+Route::post('informationPersonnelles/{id}', 'InformationPersonnellesController@update')->middleware('auth:api');
 Route::delete('employee/{id}', 'InformationPersonnellesController@destroy');
+
+Route::get('informationPhysiques', 'InformationPhysiquesController@index');
+Route::get('informationPhysiques/{id}', 'InformationPhysiquesController@show')->middleware('auth:api');
+Route::post('informationPhysiques', 'InformationPhysiquesController@store');
+Route::post('informationPhysiques/{id}', 'InformationPhysiquesController@update')->middleware('auth:api');
+Route::delete('employee/{id}', 'InformationPhysiquesController@destroy');
