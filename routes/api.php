@@ -43,3 +43,10 @@ Route::get('informationPhysiques/{id}', 'InformationPhysiquesController@show')->
 Route::post('informationPhysiques', 'InformationPhysiquesController@store');
 Route::post('informationPhysiques/{id}', 'InformationPhysiquesController@update')->middleware('auth:api');
 Route::delete('employee/{id}', 'InformationPhysiquesController@destroy');
+
+
+Route::get('recherche', 'RechercheController@index');
+Route::get('recherche/{id}', 'RechercheController@show2');
+Route::post('recherche', 'RechercheController@store');
+Route::post('recherche/{id}', 'RechercheController@show');
+Route::delete('recherche/{id}', 'RechercheController@destroy');
